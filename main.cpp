@@ -25,6 +25,7 @@ node* FindMin(node* root)
 }
 
 node* Delete(node* root, node* current){
+	cout << "in hereee" << endl;
 	if(current -> color == 1){
 		cout << "in here" << endl;
 		if(root == NULL){
