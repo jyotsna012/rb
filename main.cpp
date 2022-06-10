@@ -27,180 +27,6 @@ void swap(node* &replaced, node* &deleted);
 bool hasRedChild(node* &deleted);
 void Delete(node* &root, node* &deleted);
 
-node* FindMin(node* &root)
-{
- while(root->left != NULL) root = root->left;
- return root;
-}
-
-node* sibling(node* &deleted) {
-  if (deleted->parent == NULL) {
-    return NULL;
-  }
-  if (deleted == deleted->parent->left) {
-    return deleted->parent->right;
-  }
-  else {
-    return deleted->parent->left;
-  }
-}
-
-void fixDoubleBlack(node* &root, node* &deleted) {
-  if (deleted == root)
-    return;
-
-  node* ssibling = sibling(deleted);
-  node* parent = deleted->parent;
-
-  if (ssibling == NULL) {
-    fixDoubleBlack(root, parent);
-  } else {
-    if (ssibling->color == 1) {
-      parent->color = 1; 
-      ssibling->color = 0; 
-      if (ssibling == parent->left) {
-	right(root, parent);
-      } else {
-	left(root, parent);
-      }
-      fixDoubleBlack(root, deleted);
-    } else {
-      if (hasRedChild(ssibling)) {
-	if (ssibling->left != NULL && ssibling->left->color == 1) {
-	  if (ssibling == parent->left) {
-	    //left left
-	    ssibling->left->color = ssibling->color;
-	    ssibling->color = parent->color;
-	    right(root, parent);
-	  } else {
-	    //right left
-	    ssibling->left->color = parent->color;
-	    right(root, ssibling);
-	    left(root, parent);
-	  }
-	} else {
-	  if (ssibling == parent->left) {
-	    //left right
-	    ssibling->right->color = parent->color;
-	    left(root, ssibling);
-	    right(root, parent);
-	  } else {
-	    //right right
-	    ssibling->right->color = ssibling->color;
-	    ssibling->color = parent->color;
-	    left(root, parent);
-	  }
-	}
-	parent->color = 0; 
-      } else {
-	ssibling->color = 1; 
-	if (parent->color == 0) {
-	  fixDoubleBlack(root, parent); 
-	} else {
-	  parent->color = 0; 
-	}
-      }
-    }
-  }
-}
-
-node* replaceNode(node* &deleted) {
-  if (deleted->left != NULL && deleted->right != NULL) {
-    node* right = deleted->right;
-    return FindMin(right);
-  }
-  else if (deleted->right == NULL && deleted->right == NULL) {
-    return NULL;
-  }
-  else {
-    if (deleted->left != NULL) {
-      return deleted->left;
-    }
-    else {
-      return deleted->right;
-    }
-  }
-}
-
-void swap(node* &replaced, node* &deleted) {
-  int temp;
-  temp = replaced->val;
-  replaced->val = deleted-> val;
-  deleted->val = temp;
-}
-
-bool hasRedChild(node* &deleted) {
-  if (deleted->left != NULL && deleted->left->color == 1) {
-    return true;
-  } else if (deleted->right != NULL && deleted->right->color == 1) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-void Delete(node* &root, node* &deleted){
-	node* replaced = replaceNode(deleted);
-	node* parent = deleted->parent;
-	bool twoBlack = ((replaced == NULL || replaced->color == 0) && (deleted == NULL || deleted->color == 0));
-
-	
-  if (replaced == NULL) {
-    if (deleted == root) {
-      root = NULL;
-    }
-    else {
-      if (twoBlack) {
-	fixDoubleBlack(root, deleted);
-      }
-      else {
-	if (sibling(deleted) != NULL) {
-	  sibling(deleted)->color=1;
-	}
-      }
-      if (deleted == parent->left) {
-	parent->left = NULL;
-      }
-      else {
-	parent->right = NULL;
-      }
-    }
-    deleted->~node();
-    return;
-  }
-
-  if (deleted->right == NULL || deleted->right == NULL) {
-    if (deleted == root) {
-      deleted->val = replaced -> val; 
-      deleted->left = NULL;
-      deleted->right = NULL;
-      replaced->~node();
-    }
-    else {
-      if (deleted == parent->left) {
-	parent->left = replaced;
-      }
-      else {
-	parent->right = replaced;
-      }
-      deleted->~node();
-      replaced->parent = parent;
-      if (twoBlack) {
-	fixDoubleBlack(root, deleted);
-      }
-      else {
-	replaced->color = 0;
-      }
-    }
-    return;
-  }
-
-	
-  swap(replaced, deleted);
-  Delete(root, replaced);
-	
-}
-
 /*
 node* bstDelete(node* &root, node* &current){
 		cout << "in here" << endl;
@@ -474,7 +300,6 @@ int main(){
             cout << "not found" << endl;
           }
       }else if(choice == 2){
-	      cout << "currently only deletes some red nodes cases properly, check back later for full functionality"<< endl;
            int number;
           cout << "enter number to delete?" <<endl;
           cin>>number;
@@ -525,3 +350,185 @@ void left(node* &root, node* &realRoot){
     temp->left = root;
     root->parent = temp;
 }
+
+//minimun of tree to find the sucessor that replces node when deleted
+node* FindMin(node* &root)
+{
+ while(root->left != NULL) root = root->left;
+ return root;
+}
+
+//gets the sibling nodes of the entered node
+node* sibling(node* &deleted) {
+  if (deleted->parent == NULL) {
+    return NULL;
+  }
+  if (deleted == deleted->parent->left) {
+    return deleted->parent->right;
+  }
+  else {
+    return deleted->parent->left;
+  }
+}
+
+void fixDoubleBlack(node* &root, node* &deleted) {
+  if (deleted == root)
+    return;
+
+  node* ssibling = sibling(deleted);
+  node* parent = deleted->parent;
+
+  if (ssibling == NULL) {
+    fixDoubleBlack(root, parent);
+  } else {
+    if (ssibling->color == 1) {
+      parent->color = 1; 
+      ssibling->color = 0; 
+      if (ssibling == parent->left) {
+	right(root, parent);
+      } else {
+	left(root, parent);
+      }
+      fixDoubleBlack(root, deleted);
+    } else {
+      if (hasRedChild(ssibling)) {
+	if (ssibling->left != NULL && ssibling->left->color == 1) {
+	  if (ssibling == parent->left) {
+	    //left left
+	    ssibling->left->color = ssibling->color;
+	    ssibling->color = parent->color;
+	    right(root, parent);
+	  } else {
+	    //right left
+	    ssibling->left->color = parent->color;
+	    right(root, ssibling);
+	    left(root, parent);
+	  }
+	} else {
+	  if (ssibling == parent->left) {
+	    //left right
+	    ssibling->right->color = parent->color;
+	    left(root, ssibling);
+	    right(root, parent);
+	  } else {
+	    //right right
+	    ssibling->right->color = ssibling->color;
+	    ssibling->color = parent->color;
+	    left(root, parent);
+	  }
+	}
+	parent->color = 0; 
+      } else {
+	ssibling->color = 1; 
+	if (parent->color == 0) {
+	  fixDoubleBlack(root, parent); 
+	} else {
+	  parent->color = 0; 
+	}
+      }
+    }
+  }
+}
+
+node* replaceNode(node* &deleted) {
+	// 2 kids
+  if (deleted->left != NULL && deleted->right != NULL) {
+    node* right = deleted->right;
+    return FindMin(right);
+  }
+	//no kids
+  else if (deleted->right == NULL && deleted->right == NULL) {
+    return NULL;
+  }
+	//1 kid
+  else {
+    if (deleted->left != NULL) {
+      return deleted->left;
+    }
+    else {
+      return deleted->right;
+    }
+  }
+}
+
+//swaps teh values of the two nodes intereed. 
+void swap(node* &replaced, node* &deleted) {
+  int temp;
+  temp = replaced->val;
+  replaced->val = deleted-> val;
+  deleted->val = temp;
+}
+
+bool hasRedChild(node* &deleted) {
+  if (deleted->left != NULL && deleted->left->color == 1) {
+    return true;
+  } else if (deleted->right != NULL && deleted->right->color == 1) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+void Delete(node* &root, node* &deleted){
+	node* replaced = replaceNode(deleted);
+	node* parent = deleted->parent;
+	//checks to see if replaced and delted are black
+	bool twoBlack = ((replaced == NULL || replaced->color == 0) && (deleted == NULL || deleted->color == 0));
+
+	
+  if (replaced == NULL) {
+    if (deleted == root) {
+      root = NULL;
+    }
+    else {
+      if (twoBlack) {
+	fixDoubleBlack(root, deleted);
+      }
+      else {
+	if (sibling(deleted) != NULL) {
+	  sibling(deleted)->color=1;
+	}
+      }
+      if (deleted == parent->left) {
+	parent->left = NULL;
+      }
+      else {
+	parent->right = NULL;
+      }
+    }
+    deleted->~node();
+    return;
+  }
+
+  if (deleted->right == NULL || deleted->right == NULL) {
+    if (deleted == root) {
+      deleted->val = replaced -> val; 
+      deleted->left = NULL;
+      deleted->right = NULL;
+      replaced->~node();
+    }
+    else {
+      if (deleted == parent->left) {
+	parent->left = replaced;
+      }
+      else {
+	parent->right = replaced;
+      }
+      deleted->~node();
+      replaced->parent = parent;
+      if (twoBlack) {
+	fixDoubleBlack(root, deleted);
+      }
+      else {
+	replaced->color = 0;
+      }
+    }
+    return;
+  }
+
+	
+  swap(replaced, deleted);
+  Delete(root, replaced);
+	
+}
+
