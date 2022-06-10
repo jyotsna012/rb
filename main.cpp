@@ -74,8 +74,8 @@ void setProperties(node* &head, node* &newNode){
 				else if(newNode == newNode -> parent -> right){
 				   //rotate left, rotate right, recolor
 				   cout << "lr" << endl;
-				   left(grandParent, head);
-			           right(grandParent, head);
+				   //left(grandParent, head);
+			           //right(grandParent, head);
 				}
 			}
 		}else if(newNode -> parent == grandParent->right){
