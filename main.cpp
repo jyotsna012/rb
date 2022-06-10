@@ -4,18 +4,18 @@
 
 using namespace std;
 
-node* setProperties(node* &head);
+node* setProperties(node* &head, node* &newNode);
 
 void reColor(node* &head, node* &parent, node* &grandParent, node* &uncle){
-	parent -> color = black;
-	uncle -> color = black;
+	parent -> color = 0;
+	uncle -> color = 0;
 	if(grandParent -> parent != NULL){
-		grandParent -> color = red;
-		setProperties(head, grandParent)
+		grandParent -> color = 1;
+		setProperties(head, grandParent);
 	}
 }
 
-node* setProperties(node* &head, node* newNode){
+node* setProperties(node* &head, node* &newNode){
 	node* grandParent = newNode -> parent->parent;
 	if(newNode -> parent -> color != 0){
 		if(newNode -> parent == grandParent->left){
