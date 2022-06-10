@@ -30,7 +30,7 @@ void setProperties(node* &head, node* &newNode){
 			cout << "text 3" << endl;
 			if(uncle -> color == 1){
 				reColor(newNode, newNode -> parent, grandParent, uncle);
-			}else if(uncle -> color == 0 || uncle == NULL){
+			}else if(uncle == NULL || uncle -> color == 0){
 				cout << "uncle black or null" << endl;
 			  	//left left case
 			  	if(newNode == newNode -> parent -> left){
