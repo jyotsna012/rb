@@ -52,7 +52,7 @@ void setProperties(node* &head, node* &newNode){
 				  //rotate right
 				  //recolor
 				  cout << "ll" << endl;
-				  right(newNode -> grandParent);
+				  right(grandParent);
 			  	}
 				//left right case
 				else if(newNode == newNode -> parent -> right){
