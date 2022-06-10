@@ -18,6 +18,12 @@ void setProperties(node* &head, node* &newNode);
 void left(node* &root, node* &realRoot);
 void right(node* &root, node* &realRoot);
 
+node* FindMin(node* root)
+{
+ while(root->left != NULL) root = root->left;
+ return root;
+}
+
 node* Delete(node* root, node* current){
 	if(current -> color == 1){
 		if(root == NULL){
@@ -49,11 +55,6 @@ node* Delete(node* root, node* current){
 	}
 }
 
-node* FindMin(node* root)
-{
- while(root->left != NULL) root = root->left;
- return root;
-}
 
 node* Search(node* root, int data){
   if(root == NULL){
