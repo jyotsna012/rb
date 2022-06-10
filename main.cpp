@@ -95,6 +95,8 @@ int main(){
 	cout << "out of loop" << endl;
 	cout << root -> val << endl;
     }
+	
+    cout << root -> left > prev << "This is root left prev" << endl;
      
     int choice = 0;
     bool tf = true;
