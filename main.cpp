@@ -210,6 +210,7 @@ int main(){
       if(choice == 5){
           tf =false;
       }else if(choice == 4){
+	 cout << "the first number is the value, the second number is color (1 = red, 0 = black), thirs number is value of parent" << endl;
         print(root, -5);
       }else if(choice == 1){
           numelements++;
