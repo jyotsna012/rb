@@ -6,6 +6,17 @@ using namespace std;
 
 void setProperties(node* &head, node* &newNode);
 
+void right(node* &root){
+	cout << root -> val << endl;
+	//node* currentLeft = current -> left;
+	//current -> left = currentLeft -> right;
+	
+}
+
+void left(){
+
+}
+
 void reColor(node* &head, node* &parent, node* &grandParent, node* &uncle){
 	parent -> color = 0;
 	uncle -> color = 0;
@@ -41,6 +52,7 @@ void setProperties(node* &head, node* &newNode){
 				  //rotate right
 				  //recolor
 				  cout << "ll" << endl;
+				  right(newNode -> grandParent);
 			  	}
 				//left right case
 				else if(newNode == newNode -> parent -> right){
