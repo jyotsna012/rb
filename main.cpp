@@ -65,7 +65,9 @@ void setProperties(node* &head, node* &newNode){
 				   //rotate left, rotate right, swap
 				   cout << "in the left right" << endl;
 				   left(grandParent, head);
+				   cout << "out of left" << endl;
 			           right(grandParent, head);
+				   cout << "out of right" << endl;
 				  int tempColor = newNode -> parent -> color;
 				  newNode -> parent -> color = grandParent -> color;
 				  grandParent -> color = tempColor;
@@ -223,7 +225,6 @@ int main(){
           node* prev = NULL;
           node * current = new node();
 	  insert(root, toAdd, rootNew, prev, current);   
-	  cout << "call set properties for trial" << endl;
 	  //set properties called after  each insert to make sure no rbtree rules are violated.
           setProperties(root, current);    
       }
