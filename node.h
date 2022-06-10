@@ -10,4 +10,4 @@ class node {
     node* parent;
     int val;
     int color;
-}
+};
