@@ -54,7 +54,7 @@ node* setProperties(node* &head, node* &newNode){
 	}
 }
 
-node* insert(node* &head, int data, node* &newRoot, node* &prev){
+node* insert(node* &head, int data, node* &newRoot, node* &prev, node* &current){
  if(head == NULL){
   head = new node();
   head -> val = data;
@@ -67,6 +67,7 @@ node* insert(node* &head, int data, node* &newRoot, node* &prev){
      newRoot = new node();
      newRoot -> val = data;
      newRoot -> parent = prev;
+     current = newRoot;
 	  cout << "new root real: " << newRoot -> val << endl;
      return newRoot;
   }
@@ -164,7 +165,8 @@ int main(){
           cin.get();
           node* rootNew = root;
           node* prev = NULL;
-          node * current = insert(root, toAdd, rootNew, prev);   
+          node * current = new node();
+	  insert(root, toAdd, rootNew, prev, current);   
 	  cout << "call set properties for trial" << endl;
 	  cout << "rootnew: " << current -> val << endl;    
           //setProperties(head, current);    
