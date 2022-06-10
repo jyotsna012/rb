@@ -18,6 +18,21 @@ void setProperties(node* &head, node* &newNode);
 void left(node* &root, node* &realRoot);
 void right(node* &root, node* &realRoot);
 
+bool Search(node* root, int data){
+  if(root == NULL){
+    return false;
+  }
+  else if(root->data == data){
+    return true;
+  }
+  else if(data <= root->data){
+    return Search(root->left, data);
+  } 
+  else{
+    return Search(root->right, data);
+  }
+}
+
 //function to recolor.
 void reColor(node* &head, node* &parent, node* &grandParent, node* &uncle){
 	//sets the parents and uncle to black
