@@ -294,7 +294,7 @@ int main(){
             cout << "not found" << endl;
           }
       }else if(choice == 2){
-	      cout << "currently only deletes red nodes, check back later for full functionality"" << endl;
+	      cout << "currently only deletes red nodes, check back later for full functionality" << endl;
            int number;
           cout << "enter number to delete?" <<endl;
           cin>>number;
