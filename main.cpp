@@ -301,7 +301,7 @@ int main(){
           cout << "enter number to delete?" <<endl;
           cin>>number;
           if(Search(root,number) != NULL){
-            delete(root, Search(root,number));
+            Delete(root, Search(root,number));
           }
       }
    
