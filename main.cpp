@@ -32,7 +32,9 @@ void left(){
 void reColor(node* &head, node* &parent, node* &grandParent, node* &uncle){
 	cout << "entered recolor" << endl;
 	parent -> color = 0;
+	cout << "test 1" << endl;
 	uncle -> color = 0;
+	cout << "test 2" << endl;
 	if(grandParent -> parent != NULL){
 		grandParent -> color = 1;
 		setProperties(head, grandParent);
