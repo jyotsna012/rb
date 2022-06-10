@@ -18,12 +18,51 @@ void setProperties(node* &head, node* &newNode);
 void left(node* &root, node* &realRoot);
 void right(node* &root, node* &realRoot);
 
-bool Search(node* root, int data){
+node* delete(node* root, node* current){
+	if(current -> color == 1){
+		if(root == NULL){
+		return root;
+		}else if(current -> val < root -> val){
+		root -> left = Delete(root->left, current);
+		}else if(current -> val > root -> val){
+		root -> right = Delete(root->right, current);
+		}else{
+			if(root -> left == NULL && root -> right == NULL){
+			delete root;
+			root = NULL;
+			}else if(root -> left == NULL){
+			node* temp = root;
+			root = root -> right;
+			delete temp;
+			}else if(root -> right == NULL){
+			node* temp = root;
+			root = root -> left;
+			delete temp;
+			}else{
+			node* temp = FindMin(root->right);
+			root->val = temp ->val;
+			root -> right = Delete(root -> right, temp);
+		}
+		
+	}
+	return root;
+	}
+}
+
+node* FindMin(node* root)
+{
+ while(root->left != NULL) root = root->left;
+ return root;
+}
+
+node* Search(node* root, int data){
   if(root == NULL){
-    return false;
+     cout << "not found" << endl;
+    return NULL;
   }
   else if(root->val == data){
-    return true;
+	  cout << "found" << endl;
+    return root;
   }
   else if(data <= root->val){
     return Search(root->left, data);
@@ -222,7 +261,7 @@ int main(){
     int choice = 0;
     bool tf = true;
     while(tf == true){
-      cout << "What would you like to do? Type 1 to add, Type 3 to Search, Type 4 to print, Type 5 to quit" << endl;
+      cout << "What would you like to do? Type 1 to add, Type 2 to Delete, Type 3 to Search, Type 4 to print, Type 5 to quit" << endl;
       cin >> choice;
       cin.get();
       if(choice == 5){
@@ -250,6 +289,13 @@ int main(){
             cout << "found" << endl;
           }else{
             cout << "not found" << endl;
+          }
+      }else if(choice == 2){
+           int number;
+          cout << "enter number to delete?" <<endl;
+          cin>>number;
+          if(Search(root,number) != NULL){
+            delete(root, Search(root,number));
           }
       }
    
