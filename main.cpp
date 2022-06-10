@@ -87,7 +87,7 @@ int main(){
 	
     node* root = NULL;
     for(int a = 0; a < numelements; a++){
-        node* rootNew = head;
+        node* rootNew = root;
         node* prev = NULL;
         insert(root, arr[a], rootNew, prev);
 	cout << root -> val << endl;
