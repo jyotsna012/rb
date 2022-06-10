@@ -92,7 +92,7 @@ void setProperties(node* &head, node* &newNode){
 				//right left case
 				}else if(newNode == newNode -> parent -> left){
 					//right rotation, left rotation, swap
-				   right(grandParent, head);
+				   right(newNode -> parent, head);
 				   left(grandParent, head);
 				  int tempColor = newNode -> parent -> color;
 				  newNode -> parent -> color = grandParent -> color;
