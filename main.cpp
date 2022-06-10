@@ -309,7 +309,8 @@ int main(){
           cout << "enter number to delete?" <<endl;
           cin>>number;
           if(Search(root,number) != NULL){
-            Delete(root, Search(root,number));
+	    node* current = Search(root,number);
+            Delete(root, current);
           }
       }
    
