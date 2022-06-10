@@ -60,7 +60,6 @@ node* insert(node* &head, int data, node* &newRoot, node* &prev){
   head -> val = data;
   head -> color = 0;
   newRoot = head;
-  cout << "I am a head node" << endl;	
   return newRoot;	 
  }
  else{
@@ -68,7 +67,7 @@ node* insert(node* &head, int data, node* &newRoot, node* &prev){
      newRoot = new node();
      newRoot -> val = data;
      newRoot -> parent = prev;
-     cout << "added" << endl;	  
+	  cout << "new root real: " << newRoot -> val << endl;
      return newRoot;
   }
   else if(data <= newRoot->val){
