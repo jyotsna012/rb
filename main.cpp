@@ -18,7 +18,7 @@ node* insert(node* head, int data, node* newRoot, node* prev){
      newRoot -> parent = prev;
      return newRoot;
   }
-  else if(data <= root->val){
+  else if(data <= newRoot->val){
     prev = newRoot;
     newRoot -> left = insert(head, data, newRoot->left, prev);
   }
@@ -41,7 +41,7 @@ void print(node *root, int space)
     cout<<endl;
     for (int i = 0; i < space; i++)
         cout<<" ";
-    cout<< << "( " << root->data<< ", " << root -> color << ", " << root -> parent << " )"<< "\n";
+    cout<< "( " << root->data<< ", " << root -> color << ", " << root -> parent << " )"<< "\n";
     print(root->left, space);
 }
 
