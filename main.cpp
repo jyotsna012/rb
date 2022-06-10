@@ -222,7 +222,7 @@ int main(){
     int choice = 0;
     bool tf = true;
     while(tf == true){
-      cout << "What would you like to do? Type 1 to add, Type 4 to print, Type 5 to quit" << endl;
+      cout << "What would you like to do? Type 1 to add, Type 3 to Search, Type 4 to print, Type 5 to quit" << endl;
       cin >> choice;
       cin.get();
       if(choice == 5){
