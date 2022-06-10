@@ -177,7 +177,7 @@ int main(){
           node * current = new node();
 	  insert(root, toAdd, rootNew, prev, current);   
 	  cout << "call set properties for trial" << endl;
-          setProperties(head, current);    
+          setProperties(root, current);    
       }
    
   }  
