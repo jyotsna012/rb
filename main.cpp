@@ -45,7 +45,7 @@ node* sibling(node* &deleted) {
 }
 
 void fixDoubleBlack(node* &root, node* &deleted) {
-  if (x == head)
+  if (deleted == root)
     return;
 
   node* sibling = sibling(deleted);
@@ -58,9 +58,9 @@ void fixDoubleBlack(node* &root, node* &deleted) {
       parent->color = 1; 
       sibling->color = 0; 
       if (sibling == parent->left) {
-	rotateRight(root, parent);
+	right(root, parent);
       } else {
-	rotateLeft(root, parent);
+	left(root, parent);
       }
       fixDoubleBlack(root, deleted);
     } else {
