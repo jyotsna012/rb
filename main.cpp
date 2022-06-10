@@ -106,7 +106,7 @@ void fixDoubleBlack(node* &root, node* &deleted) {
 node* replaceNode(node* &deleted) {
   if (deleted->left != NULL && deleted->right != NULL) {
     node* right = deleted->right;
-    return findMin(right);
+    return FindMIn(right);
   }
   else if (deleted->right == NULL && deleted->right == NULL) {
     return NULL;
@@ -140,7 +140,7 @@ bool hasRedChild(node* &deleted) {
 
 void Delete(node* &root, node* &deleted){
 	node* replaced = replaceNode(deleted);
-	node* parent = current->parent;
+	node* parent = deleted->parent;
 	bool twoBlack = ((replaced == NULL || replaced->color == 0) && (deleted == NULL || deleted->color == 0));
 
 	
@@ -177,7 +177,7 @@ void Delete(node* &root, node* &deleted){
     }
     else {
       if (deleted == parent->left) {
-	parent->sleft = replaced;
+	parent->left = replaced;
       }
       else {
 	parent->right = replaced;
