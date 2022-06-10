@@ -56,7 +56,7 @@ void setProperties(node* &head, node* &newNode){
 				if(uncle -> color == 1){
 					reColor(newNode, newNode -> parent, grandParent, uncle);
 				}
-			}else if(uncle -> color == 0 || uncle == NULL){
+			}else if(uncle == NULL || uncle -> color == 0){
 				//rotations
 				//right right case
 				if(newNode == newNode -> parent -> right){
