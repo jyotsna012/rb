@@ -4,7 +4,7 @@
 
 using namespace std;
 
-node* setProperties(node* &head, node* &newNode);
+void setProperties(node* &head, node* &newNode);
 
 void reColor(node* &head, node* &parent, node* &grandParent, node* &uncle){
 	parent -> color = 0;
@@ -15,9 +15,13 @@ void reColor(node* &head, node* &parent, node* &grandParent, node* &uncle){
 	}
 }
 
-node* setProperties(node* &head, node* &newNode){
+void setProperties(node* &head, node* &newNode){
 	node* grandParent = newNode -> parent->parent;
-	if(newNode -> parent -> color != 0){
+	if(newNode -> val == head -> val){
+		cout << "node is root" << endl;
+	}
+	else if(newNode -> parent -> color != 0){
+		cout << "the parent is red" << endl;
 		if(newNode -> parent == grandParent->left){
 			node* uncle = grandParent->right;
 			if(uncle -> color == 1){
@@ -27,10 +31,12 @@ node* setProperties(node* &head, node* &newNode){
 			  	if(newNode == newNode -> parent -> left){
 				  //rotate right
 				  //recolor
+				  cout << "ll" << endl;
 			  	}
 				//left right case
 				else if(newNode == newNode -> parent -> right){
-				   //rotate right, rotate right, recolor	
+				   //rotate right, rotate right, recolor
+				   cout << "lr" << endl;
 				
 				}
 			}
@@ -44,9 +50,11 @@ node* setProperties(node* &head, node* &newNode){
 				if(newNode == newNode -> parent -> right){
 				   //rotate left
 				   //recolor
+				   cout << "rr" << endl;	
 				//right left case
 				}else if(newNode == newNode -> parent -> left){
 				   //rotate left, rotate left, recolor
+				   cout << "rl" << endl;
 				}
 			}		
 		
@@ -169,8 +177,7 @@ int main(){
           node * current = new node();
 	  insert(root, toAdd, rootNew, prev, current);   
 	  cout << "call set properties for trial" << endl;
-	  cout << "rootnew: " << current -> val << endl;    
-          //setProperties(head, current);    
+          setProperties(head, current);    
       }
    
   }  
