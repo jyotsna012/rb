@@ -4,7 +4,7 @@
 using namespace std;
 
 node::node() {
-  data = 0;
+  val = 0;
   color = 1; //red
   left = NULL;
   parent = NULL;
