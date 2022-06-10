@@ -96,7 +96,7 @@ int main(){
 	cout << root -> val << endl;
     }
 	
-    cout << root -> left > parent -> val << "This is root left prev" << endl;
+    cout << root -> left -> parent -> val << "This is root left prev" << endl;
      
     int choice = 0;
     bool tf = true;
