@@ -73,11 +73,11 @@ node* insert(node* &head, int data, node* &newRoot, node* &prev, node* &current)
   }
   else if(data <= newRoot->val){
     prev = newRoot;
-    newRoot -> left = insert(head, data, newRoot->left, prev);
+    newRoot -> left = insert(head, data, newRoot->left, prev, current);
   }
   else{
     prev = newRoot;
-    newRoot -> right = insert(head, data, newRoot->right, prev);
+    newRoot -> right = insert(head, data, newRoot->right, prev, current);
   }
   return newRoot;
  
@@ -144,7 +144,8 @@ int main(){
     for(int a = 0; a < numelements; a++){
         node* rootNew = root;
         node* prev = NULL;
-        root = insert(root, arr[a], rootNew, prev);
+	node* current = new node();
+        root = insert(root, arr[a], rootNew, prev, current);
     }	
      
     int choice = 0;
