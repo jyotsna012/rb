@@ -166,6 +166,7 @@ int main(){
         node* prev = NULL;
 	node* current = new node();
         root = insert(root, arr[a], rootNew, prev, current);
+	setProperties(root, current);
     }	
      
     int choice = 0;
