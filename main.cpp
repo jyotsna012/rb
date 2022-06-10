@@ -18,16 +18,25 @@ void setProperties(node* &head, node* &newNode);
 void left(node* &root, node* &realRoot);
 void right(node* &root, node* &realRoot);
 
-node* FindMin(node* root)
+node* FindMin(node* &root)
 {
  while(root->left != NULL) root = root->left;
  return root;
 }
 
-node* Delete(node* root, node* current){
+void Delete(node* &root, node* &current){
+	node* u = bstDelete(root, current);
+	cout << "u-val " << u -> val << endl;
+	cout << "c - val " << current -> val << endl;
+	
+}
+
+node* bstDelete(node* &root, node* &current){
 		cout << "in here" << endl;
 		if(root == NULL){
 		return root;
+		cout << "curren val " << current -> val << endl;
+		cout << "root val " << root -> val << endl;
 		}else if(current -> val < root -> val){
 			cout << "in 1" << endl;
 		root -> left = Delete(root->left, current);
