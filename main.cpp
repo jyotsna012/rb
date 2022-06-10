@@ -33,8 +33,8 @@ void setProperties(node* &head, node* &newNode){
 				if(uncle -> color == 1){
 					reColor(newNode, newNode -> parent, grandParent, uncle);
 				}
-			}else if(uncle == NULL){
-				//|| uncle -> color == 0
+			}else if(uncle == NULL|| uncle -> color == 0){
+				//
 				cout << "uncle black or null" << endl;
 			  	//left left case
 			  	if(newNode == newNode -> parent -> left){
@@ -51,8 +51,11 @@ void setProperties(node* &head, node* &newNode){
 			}
 		}else if(newNode -> parent == grandParent->right){
 			node* uncle = grandParent->left;
-			if(uncle -> color == 1){
-				reColor(newNode, newNode -> parent, grandParent, uncle);
+			if(uncle != NULL){
+				cout << "test 4" << endl;
+				if(uncle -> color == 1){
+					reColor(newNode, newNode -> parent, grandParent, uncle);
+				}
 			}else if(uncle -> color == 0 || uncle == NULL){
 				//rotations
 				//right right case
