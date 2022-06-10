@@ -10,7 +10,8 @@ node* insert(node* head, int data, node* newRoot, node* prev){
   head -> val = data;
   head -> color = 0;
   newRoot = head;
-  cout << "I am a head node" << endl;	 
+  cout << "I am a head node" << endl;	
+  return root;	 
  }
  else{
   if(newRoot == NULL){
@@ -89,7 +90,8 @@ int main(){
     for(int a = 0; a < numelements; a++){
         node* rootNew = root;
         node* prev = NULL;
-        insert(root, arr[a], rootNew, prev);
+        root = insert(root, arr[a], rootNew, prev);
+	cout << "out of loop" << endl;
 	cout << root -> val << endl;
     }
      
