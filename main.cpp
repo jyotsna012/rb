@@ -6,11 +6,31 @@ using namespace std;
 
 void setProperties(node* &head, node* &newNode);
 
-void right(node* &root){
-	cout << root -> val << endl;
-	//node* currentLeft = current -> left;
-	//current -> left = currentLeft -> right;
-	
+void right(node* &root, node* &realRoot){
+	node *temp = root->left;
+ 
+    	root->left = temp->right;
+ 
+    	if (root->left != NULL){
+        root->left->parent = root;
+	}
+ 
+    	temp->parent = root->parent;
+ 
+   	if (root->parent == NULL){
+        	realRoot = temp;
+	}
+ 
+    	else if (root == root->parent->left){
+        	root->parent->left = temp;
+	}
+ 
+    	else{
+        	root->parent->right = temp;
+	}
+ 
+    	temp->right = root;
+    	root->parent = temp;	
 }
 
 void left(){
