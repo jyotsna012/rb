@@ -18,7 +18,7 @@ void setProperties(node* &head, node* &newNode);
 void left(node* &root, node* &realRoot);
 void right(node* &root, node* &realRoot);
 
-node* delete(node* root, node* current){
+node* Delete(node* root, node* current){
 	if(current -> color == 1){
 		if(root == NULL){
 		return root;
