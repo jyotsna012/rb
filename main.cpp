@@ -46,7 +46,7 @@ void print(node *root, int space)
     for (int i = 0; i < space; i++)
         cout<<" ";
     if(root -> parent == NULL){	    
-    	cout<< "( " << root->val<< ", " << root -> color << "Null parent" << " )"<< "\n";
+    	cout<< "( " << root->val<< ", " << root -> color << ", NULL" << " )"<< "\n";
     }else{
     cout<< "( " << root->val<< ", " << root -> color << ", " << root -> parent -> val << " )"<< "\n";
     }
@@ -95,12 +95,7 @@ int main(){
         node* rootNew = root;
         node* prev = NULL;
         root = insert(root, arr[a], rootNew, prev);
-	cout << "out of loop" << endl;
-	cout << root -> val << endl;
-    }
-	
-    cout << root -> left -> parent -> val << "This is root left prev" << endl;
-    cout << root -> left -> left -> parent -> val << "second rest " << endl;	
+    }	
      
     int choice = 0;
     bool tf = true;
