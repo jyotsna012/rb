@@ -18,21 +18,6 @@ void setProperties(node* &head, node* &newNode);
 void left(node* &root, node* &realRoot);
 void right(node* &root, node* &realRoot);
 
-bool Search(node* root, int data){
-  if(root == NULL){
-    return false;
-  }
-  else if(root->val == data){
-    return true;
-  }
-  else if(data <= root->val){
-    return Search(root->left, data);
-  } 
-  else{
-    return Search(root->right, data);
-  }
-}
-
 //function to recolor.
 void reColor(node* &head, node* &parent, node* &grandParent, node* &uncle){
 	//sets the parents and uncle to black
@@ -219,7 +204,7 @@ int main(){
     int choice = 0;
     bool tf = true;
     while(tf == true){
-      cout << "What would you like to do? Type 1 to add, Type 3 to Search, Type 4 to print, Type 5 to quit" << endl;
+      cout << "What would you like to do? Type 1 to add, Type 4 to print, Type 5 to quit" << endl;
       cin >> choice;
       cin.get();
       if(choice == 5){
@@ -240,15 +225,8 @@ int main(){
 	  cout << "call set properties for trial" << endl;
 	  //set properties called after  each insert to make sure no rbtree rules are violated.
           setProperties(root, current);    
-      }else if(choice == 3){
-          int number;
-          cout << "enter number to search?" <<endl;
-          cin>>number;
-          if(Search(root,number) == true){
-            cout << "found" << endl;
-          }else{
-            cout << "not found" << endl;
-          }
+      }
+   
   }  
 
 }
