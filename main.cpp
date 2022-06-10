@@ -22,13 +22,16 @@ void setProperties(node* &head, node* &newNode){
 		cout << "node is root" << endl;
 	}
 	else if(newNode -> parent -> color != 0){
-		node* grandParent = newNode -> parent->parent;
+		node* grandParent = newNode -> parent-> parent;
 		cout << "the parent is red" << endl;
 		if(newNode -> parent == grandParent->left){
+			cout << "test 2" << endl;
 			node* uncle = grandParent->right;
+			cout << "text 3" << endl;
 			if(uncle -> color == 1){
 				reColor(newNode, newNode -> parent, grandParent, uncle);
 			}else if(uncle -> color == 0 || uncle == NULL){
+				cout << "uncle black or null" << endl;
 			  	//left left case
 			  	if(newNode == newNode -> parent -> left){
 				  //rotate right
