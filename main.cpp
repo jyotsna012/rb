@@ -106,7 +106,7 @@ void fixDoubleBlack(node* &root, node* &deleted) {
 node* replaceNode(node* &deleted) {
   if (deleted->left != NULL && deleted->right != NULL) {
     node* right = deleted->right;
-    return FindMIn(right);
+    return FindMin(right);
   }
   else if (deleted->right == NULL && deleted->right == NULL) {
     return NULL;
