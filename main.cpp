@@ -63,6 +63,7 @@ void setProperties(node* &head, node* &newNode){
 				//left right case
 				else if(newNode == newNode -> parent -> right){
 				   //rotate left, rotate right, swap
+				   cout << "in the left right" << endl;
 				   left(grandParent, head);
 			           right(grandParent, head);
 				  int tempColor = newNode -> parent -> color;
