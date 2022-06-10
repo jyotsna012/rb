@@ -200,6 +200,7 @@ void Delete(node* &root, node* &deleted){
 	
 }
 
+/*
 node* bstDelete(node* &root, node* &current){
 		cout << "in here" << endl;
 		if(root == NULL){
@@ -233,7 +234,7 @@ node* bstDelete(node* &root, node* &current){
 		
 	}
 	return root;
-}
+}*/
 
 
 node* Search(node* root, int data){
