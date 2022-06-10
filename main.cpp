@@ -1,96 +1,68 @@
+//jyotsna tera
+//june 10th
+//red balck tree - insert
+// creates a red black tree which can take in new number and make sure that the tree is still balanced accoring to properties
+
+//sources used: 
+//https://www.youtube.com/watch?v=UaLIHuR1t8Q&t=616s - Reb Black Tree Insertion
+//https://www.geeksforgeeks.org/c-program-red-black-tree-insertion/ 
+
 #include <iostream>
 #include "node.h"
 #include <fstream>
 
 using namespace std;
 
+//function prototype
 void setProperties(node* &head, node* &newNode);
+void left(node* &root, node* &realRoot);
+void right(node* &root, node* &realRoot);
 
-void right(node* &root, node* &realRoot){
-	node *temp = root->left;
-    	root->left = temp->right;
-    	if (root->left != NULL){
-        	root->left->parent = root;
-	}
-    	temp->parent = root->parent;
-   	if (root->parent == NULL){
-        	realRoot = temp;
-	}
-    	else if (root == root->parent->right){
-        	root->parent->right = temp;
-	}else{
-        	root->parent->left = temp;
-	}
-    	temp->right = root;
-    	root->parent = temp;	
-}
-
-void left(node* &root, node* &realRoot){
-    node *temp = root->right;
-    root->right = temp->left;
-    if (root->right != NULL){
-        root->right->parent = root;
-    }
-    temp->parent = root->parent;
-    if (root->parent == NULL){
-        realRoot = temp;
-    }else if (root == root->parent->left){
-        root->parent->left = temp;
-    }else{
-        root->parent->right = temp;
-    }
-    temp->left = root;
-    root->parent = temp;
-}
-
+//function to recolor.
 void reColor(node* &head, node* &parent, node* &grandParent, node* &uncle){
-	cout << "entered recolor" << endl;
+	//sets the parents and uncle to black
 	parent -> color = 0;
-	cout << "test 1" << endl;
 	uncle -> color = 0;
-	cout << "test 2" << endl;
+	//sets gp tp red if its not root
 	if(grandParent -> parent != NULL){
 		grandParent -> color = 1;
+		//runs set properties to balnce the new tree
 		setProperties(head, grandParent);
 	}
 }
 
+//function that makes sure all the prpperties of rbtree is met
 void setProperties(node* &head, node* &newNode){
-	cout << "in set properties" << endl;
-	cout << "test 1" << endl;
+	//if the new node is head then nothing need to change
 	if(newNode -> parent == NULL){
-		cout << "node is root" << endl;
 	}
+	//if the parents of the new node is red the red red conflict happens
 	else if(newNode -> parent -> color != 0){
+		//creats grandparent node
 		node* grandParent = newNode -> parent-> parent;
-		cout << "the parent is red" << endl;
+		//new node is left of grandpatent
 		if(newNode -> parent == grandParent->left){
-			cout << "test 2" << endl;
 			node* uncle = grandParent->right;
-			cout << "text 3" << endl;
+			//if uncle of new node is red the recoloring occurs
 			if(uncle != NULL){
-				cout << "test 4" << endl;
 				if(uncle -> color == 1){
 					reColor(newNode, newNode -> parent, grandParent, uncle);
 				}
+			//if uncle is black or null then rotations occus	
 			}else if(uncle == NULL|| uncle -> color == 0){
-				cout << "uncle black or null" << endl;
 			  	//left left case
 			  	if(newNode == newNode -> parent -> left){
 				  //rotate right
 				  //recolor
-				  cout << "ll" << endl;
 				  right(grandParent, head);
-				  cout << "parent: " << newNode -> parent -> val << endl;
-				  cout << "grandparent: " << grandParent -> val << endl;
+				  //color of parent and grand parent is swapped
 				  int tempColor = newNode -> parent -> color;
 				  newNode -> parent -> color = grandParent -> color;
 				  grandParent -> color = tempColor;
 			  	}
 				//left right case
 				else if(newNode == newNode -> parent -> right){
-				   //rotate left, rotate right, recolor
-				   cout << "lr" << endl;
+				   //rotate left, rotate right, swap
 				   left(grandParent, head);
 			           right(grandParent, head);
 				  int tempColor = newNode -> parent -> color;
@@ -114,15 +86,14 @@ void setProperties(node* &head, node* &newNode){
 				  newNode -> parent -> color = grandParent -> color;
 				  grandParent -> color = tempColor;
 				   //recolor
-				   cout << "rr" << endl;	
 				//right left case
 				}else if(newNode == newNode -> parent -> left){
+					//right rotation, left rotation, swap
 				   right(grandParent, head);
 				   left(grandParent, head);
 				  int tempColor = newNode -> parent -> color;
 				  newNode -> parent -> color = grandParent -> color;
 				  grandParent -> color = tempColor;
-				   cout << "rl" << endl;
 				}
 			}		
 		
@@ -130,8 +101,10 @@ void setProperties(node* &head, node* &newNode){
 	}
 }
 
+//function to insert - same as bst excpet keeps track fo current and previous to assign parent to each node
 node* insert(node* &head, int data, node* &newRoot, node* &prev, node* &current){
  if(head == NULL){
+  //if the node is the first node then color is set to black
   head = new node();
   head -> val = data;
   head -> color = 0;
@@ -144,14 +117,15 @@ node* insert(node* &head, int data, node* &newRoot, node* &prev, node* &current)
      newRoot -> val = data;
      newRoot -> parent = prev;
      current = newRoot;
-	  cout << "new root real: " << newRoot -> val << endl;
      return newRoot;
   }
+	 //if new node value is less than root
   else if(data <= newRoot->val){
     prev = newRoot;
+	  //turn left
     newRoot -> left = insert(head, data, newRoot->left, prev, current);
   }
-  else{
+  else{//else turn right
     prev = newRoot;
     newRoot -> right = insert(head, data, newRoot->right, prev, current);
   }
@@ -216,6 +190,7 @@ int main(){
 	     }
     }
 	
+    //takes all entered values, creates nodes for them, runs insert function	
     node* root = NULL;
     for(int a = 0; a < numelements; a++){
         node* rootNew = root;
@@ -225,6 +200,7 @@ int main(){
 	setProperties(root, current);
     }	
      
+    //gives users choices for next move	
     int choice = 0;
     bool tf = true;
     while(tf == true){
@@ -246,9 +222,50 @@ int main(){
           node * current = new node();
 	  insert(root, toAdd, rootNew, prev, current);   
 	  cout << "call set properties for trial" << endl;
+	  //set properties called after  each insert to make sure no rbtree rules are violated.
           setProperties(root, current);    
       }
    
   }  
 
 }
+
+//right rotation
+void right(node* &root, node* &realRoot){
+	node *temp = root->left;
+    	root->left = temp->right;
+    	if (root->left != NULL){
+        	root->left->parent = root;
+	}
+    	temp->parent = root->parent;
+   	if (root->parent == NULL){
+        	realRoot = temp;
+	}
+    	else if (root == root->parent->right){
+        	root->parent->right = temp;
+	}else{
+        	root->parent->left = temp;
+	}
+    	temp->right = root;
+    	root->parent = temp;	
+}
+ 
+//left roation
+void left(node* &root, node* &realRoot){
+    node *temp = root->right;
+    root->right = temp->left;
+    if (root->right != NULL){
+        root->right->parent = root;
+    }
+    temp->parent = root->parent;
+    if (root->parent == NULL){
+        realRoot = temp;
+    }else if (root == root->parent->left){
+        root->parent->left = temp;
+    }else{
+        root->parent->right = temp;
+    }
+    temp->left = root;
+    root->parent = temp;
+}
+
