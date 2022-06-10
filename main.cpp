@@ -34,8 +34,9 @@ node* insert(node* head, int data, node* newRoot, node* prev){
 //used the same algorithim from Geeks for Geeks https://www.geeksforgeeks.org/print-binary-tree-2-dimensions/
 void print(node *root, int space)
 {
-    if (root == NULL)
+    if (root == NULL){
         return;
+    }else{
     space += 5;
     print(root->right, space);
     cout<<endl;
@@ -43,6 +44,7 @@ void print(node *root, int space)
         cout<<" ";
     cout<< "( " << root->val<< ", " << root -> color << ", " << root -> parent << " )"<< "\n";
     print(root->left, space);
+    }
 }
 
 int main(){
@@ -97,6 +99,7 @@ int main(){
       if(choice == 5){
           tf =false;
       }else if(choice == 4){
+	cout << "4" << endl;      
         print(root, -5);
       }else if(choice == 1){
           numelements++;
