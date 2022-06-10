@@ -22,10 +22,10 @@ bool Search(node* root, int data){
   if(root == NULL){
     return false;
   }
-  else if(root->data == data){
+  else if(root->val == data){
     return true;
   }
-  else if(data <= root->data){
+  else if(data <= root->val){
     return Search(root->left, data);
   } 
   else{
