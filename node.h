@@ -1,6 +1,7 @@
 using namespace std;
 
 class node {
+    public:
     //constructor
     node();
     //destructor
