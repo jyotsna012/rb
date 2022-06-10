@@ -46,7 +46,7 @@ void print(node *root, int space)
     for (int i = 0; i < space; i++)
         cout<<" ";
     cout<< "( " << root->val<< ", " << root -> color << " )"<< "\n";
-    //cout<< "( " << root->val<< ", " << root -> color << ", " << root -> parent -> val << " )"<< "\n";
+    cout<< "( " << root->val<< ", " << root -> color << ", " << root -> parent -> val << " )"<< "\n";
     print(root->left, space);
     }
 }
@@ -97,6 +97,7 @@ int main(){
     }
 	
     cout << root -> left -> parent -> val << "This is root left prev" << endl;
+    cout << root -> left -> left -> parent -> val << "second rest " << endl;	
      
     int choice = 0;
     bool tf = true;
