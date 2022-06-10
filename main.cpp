@@ -17,6 +17,7 @@ using namespace std;
 void setProperties(node* &head, node* &newNode);
 void left(node* &root, node* &realRoot);
 void right(node* &root, node* &realRoot);
+void bstDelete(node* &root, node* &current);
 
 node* FindMin(node* &root)
 {
@@ -39,10 +40,10 @@ node* bstDelete(node* &root, node* &current){
 		cout << "root val " << root -> val << endl;
 		}else if(current -> val < root -> val){
 			cout << "in 1" << endl;
-		root -> left = Delete(root->left, current);
+		root -> left = bstDelete(root->left, current);
 		}else if(current -> val > root -> val){
 			cout << "in 2" << endl;
-		root -> right = Delete(root->right, current);
+		root -> right = bstDelete(root->right, current);
 		}else{
 			cout << "in 3" << endl;
 			if(root -> left == NULL && root -> right == NULL){
@@ -59,7 +60,7 @@ node* bstDelete(node* &root, node* &current){
 			}else{
 			node* temp = FindMin(root->right);
 			root->val = temp ->val;
-			root -> right = Delete(root -> right, temp);
+			root -> right = bstDelete(root -> right, temp);
 		}
 		
 	}
