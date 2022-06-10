@@ -18,7 +18,7 @@ void setProperties(node* &head, node* &newNode);
 void left(node* &root, node* &realRoot);
 void right(node* &root, node* &realRoot);
 
-bool Search(Node* root, int data){
+bool Search(node* root, int data){
   if(root == NULL){
     return false;
   }
@@ -245,7 +245,7 @@ int main(){
       	  int number;
           cout << "enter number to search?" <<endl;
           cin>>number;
-          if(Search(rootP,number) == true){
+          if(Search(root,number) == true){
             cout << "found" << endl;
           }else{
             cout << "not found" << endl;
