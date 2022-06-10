@@ -26,8 +26,8 @@ node* FindMin(node* &root)
 }
 
 void Delete(node* &root, node* &current){
+	cout << "u-val " << current -> val << endl;
 	node* u = bstDelete(root, current);
-	cout << "u-val " << u -> val << endl;
 	cout << "c - val " << current -> val << endl;
 	
 }
