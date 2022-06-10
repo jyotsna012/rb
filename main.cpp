@@ -85,12 +85,12 @@ int main(){
 	     }
     }
 	
-    node* head = NULL;
+    node* root = NULL;
     for(int a = 0; a < numelements; a++){
         node* rootNew = head;
         node* prev = NULL;
-        insert(head, arr[a], head, prev);
-	cout << head -> val << endl;
+        insert(root, arr[a], root, prev);
+	cout << root -> val << endl;
     }
      
     int choice = 0;
