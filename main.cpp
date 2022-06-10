@@ -165,7 +165,10 @@ int main(){
           cin.get();
           node* rootNew = root;
           node* prev = NULL;
-          insert(root, toAdd, root, prev);          
+          insert(root, toAdd, root, prev);   
+	  cout << "call set properties for trial" << endl;
+	  cout << "rootnew: " << rootNew -> val << endl;    
+          //setProperties(head, rootNew);    
       }
    
   }  
