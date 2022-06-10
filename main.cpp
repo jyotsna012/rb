@@ -45,7 +45,7 @@ void print(node *root, int space)
     cout<<endl;
     for (int i = 0; i < space; i++)
         cout<<" ";
-    cout<< "( " << root->val<< ", " << root -> color << ", " << root -> parent << " )"<< "\n";
+    cout<< "( " << root->val<< ", " << root -> color << ", " << root -> parent -> val << " )"<< "\n";
     print(root->left, space);
     }
 }
