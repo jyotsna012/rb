@@ -204,7 +204,7 @@ int main(){
     int choice = 0;
     bool tf = true;
     while(tf == true){
-      cout << "What would you like to do? Type 1 to add, Type 4 to print, Type 5 to quit" << endl;
+      cout << "What would you like to do? Type 1 to add, Type 3 to Search, Type 4 to print, Type 5 to quit" << endl;
       cin >> choice;
       cin.get();
       if(choice == 5){
@@ -225,8 +225,15 @@ int main(){
 	  cout << "call set properties for trial" << endl;
 	  //set properties called after  each insert to make sure no rbtree rules are violated.
           setProperties(root, current);    
-      }
-   
+      }else if(choice == 3){
+          int number;
+          cout << "enter number to search?" <<endl;
+          cin>>number;
+          if(Search(root,number) == true){
+            cout << "found" << endl;
+          }else{
+            cout << "not found" << endl;
+          }
   }  
 
 }
