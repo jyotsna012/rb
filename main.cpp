@@ -11,7 +11,7 @@ node* insert(node* head, int data, node* newRoot, node* prev){
   head -> color = 0;
   newRoot = head;
   cout << "I am a head node" << endl;	
-  return root;	 
+  return newRoot;	 
  }
  else{
   if(newRoot == NULL){
