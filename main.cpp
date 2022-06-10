@@ -1,4 +1,4 @@
-//jyotsna tera
+/jyotsna tera
 //june 10th 2022
 //red balck tree - insert
 // creates a red black tree which can take in new number and make sure that the tree is still balanced accoring to properties
@@ -294,7 +294,7 @@ int main(){
             cout << "not found" << endl;
           }
       }else if(choice == 2){
-	      cout << "currently only deletes red nodes, check back later for full functionality" << endl;
+	      cout << "currently only deletes red nodes, check back later for full functionality"<< endl;
            int number;
           cout << "enter number to delete?" <<endl;
           cin>>number;
@@ -304,9 +304,7 @@ int main(){
       }
    
   }  
-
 }
-
 //right rotation
 void right(node* &root, node* &realRoot){
 	node *temp = root->left;
@@ -345,4 +343,3 @@ void left(node* &root, node* &realRoot){
     temp->left = root;
     root->parent = temp;
 }
-
