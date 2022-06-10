@@ -33,7 +33,7 @@ void left(node* &root, node* &realRoot){
     }
     temp->parent = root->parent;
     if (root->parent == NULL){
-        root = temp;
+        realRoot = temp;
     }else if (root == root->parent->left){
         root->parent->left = temp;
     }else{
