@@ -26,13 +26,17 @@ node* FindMin(node* root)
 
 node* Delete(node* root, node* current){
 	if(current -> color == 1){
+		cout << "in here" << endl;
 		if(root == NULL){
 		return root;
 		}else if(current -> val < root -> val){
+			cout << "in 1" << endl;
 		root -> left = Delete(root->left, current);
 		}else if(current -> val > root -> val){
+			cout << "in 2" << endl;
 		root -> right = Delete(root->right, current);
 		}else{
+			cout << "in 3" << endl;
 			if(root -> left == NULL && root -> right == NULL){
 			delete root;
 			root = NULL;
