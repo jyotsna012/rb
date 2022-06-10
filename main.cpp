@@ -8,27 +8,19 @@ void setProperties(node* &head, node* &newNode);
 
 void right(node* &root, node* &realRoot){
 	node *temp = root->left;
- 
     	root->left = temp->right;
- 
     	if (root->left != NULL){
-        root->left->parent = root;
+        	root->left->parent = root;
 	}
- 
     	temp->parent = root->parent;
- 
    	if (root->parent == NULL){
         	realRoot = temp;
 	}
- 
-    	else if (root == root->parent->left){
+    	else if (root == root->parent->right){
+        	root->parent->right = temp;
+	}else{
         	root->parent->left = temp;
 	}
- 
-    	else{
-        	root->parent->right = temp;
-	}
- 
     	temp->right = root;
     	root->parent = temp;	
 }
@@ -72,7 +64,7 @@ void setProperties(node* &head, node* &newNode){
 				  //rotate right
 				  //recolor
 				  cout << "ll" << endl;
-				  right(grandParent);
+				  right(grandParent, head);
 			  	}
 				//left right case
 				else if(newNode == newNode -> parent -> right){
