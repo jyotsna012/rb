@@ -64,7 +64,7 @@ void setProperties(node* &head, node* &newNode){
 				else if(newNode == newNode -> parent -> right){
 				   //rotate left, rotate right, swap
 				   cout << "in the left right" << endl;
-				   left(grandParent, head);
+				   left(newNode -> parent, head);
 				   cout << "out of left" << endl;
 			           right(grandParent, head);
 				   cout << "out of right" << endl;
