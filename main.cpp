@@ -17,7 +17,7 @@ using namespace std;
 void setProperties(node* &head, node* &newNode);
 void left(node* &root, node* &realRoot);
 void right(node* &root, node* &realRoot);
-void bstDelete(node* &root, node* &current);
+node* bstDelete(node* &root, node* &current);
 
 node* FindMin(node* &root)
 {
