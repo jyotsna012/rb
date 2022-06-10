@@ -60,7 +60,6 @@ void setProperties(node* &head, node* &newNode){
 					reColor(newNode, newNode -> parent, grandParent, uncle);
 				}
 			}else if(uncle == NULL|| uncle -> color == 0){
-				//
 				cout << "uncle black or null" << endl;
 			  	//left left case
 			  	if(newNode == newNode -> parent -> left){
@@ -68,15 +67,15 @@ void setProperties(node* &head, node* &newNode){
 				  //recolor
 				  cout << "ll" << endl;
 				  right(grandParent, head);
-				  reColor(newNode, newNode -> parent, grandParent, uncle);
+				  cout << "parent: " << newNode -> parent -> val << endl;
+				  cout << "grandparent: " << grandParent -> val << endl;	
 			  	}
 				//left right case
 				else if(newNode == newNode -> parent -> right){
-				   //rotate right, rotate right, recolor
+				   //rotate left, rotate right, recolor
 				   cout << "lr" << endl;
-				   right(grandParent, head);
+				   left(grandParent, head);
 			           right(grandParent, head);
-				   reColor(newNode, newNode -> parent, grandParent, uncle);
 				}
 			}
 		}else if(newNode -> parent == grandParent->right){
@@ -95,7 +94,7 @@ void setProperties(node* &head, node* &newNode){
 				   cout << "rr" << endl;	
 				//right left case
 				}else if(newNode == newNode -> parent -> left){
-				   //rotate left, rotate left, recolor
+				   //rotate right, rotate left, recolor
 				   cout << "rl" << endl;
 				}
 			}		
