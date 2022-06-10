@@ -5,7 +5,7 @@
 using namespace std;
 
 node* insert(node* head, int data, node* newRoot, node* prev){
- if(root == NULL){
+ if(head == NULL){
   head = new node();
   head -> val = data;
   head -> color = 0;
