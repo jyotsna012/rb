@@ -310,6 +310,7 @@ int main(){
           cin>>number;
           if(Search(root,number) != NULL){
 	    node* current = Search(root,number);
+	    cout << "num to del: " << current -> val << endl;;
             Delete(root, current);
           }
       }
