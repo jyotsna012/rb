@@ -30,6 +30,7 @@ void left(){
 }
 
 void reColor(node* &head, node* &parent, node* &grandParent, node* &uncle){
+	cout << "entered recolor" << endl;
 	parent -> color = 0;
 	uncle -> color = 0;
 	if(grandParent -> parent != NULL){
