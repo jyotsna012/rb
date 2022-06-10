@@ -16,7 +16,9 @@ void reColor(node* &head, node* &parent, node* &grandParent, node* &uncle){
 }
 
 void setProperties(node* &head, node* &newNode){
+	cout << "in set properties" << endl;
 	node* grandParent = newNode -> parent->parent;
+	cout << "test 1" << endl;
 	if(newNode -> val == head -> val){
 		cout << "node is root" << endl;
 	}
