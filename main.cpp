@@ -25,8 +25,22 @@ void right(node* &root, node* &realRoot){
     	root->parent = temp;	
 }
 
-void left(){
-
+void left(node* &root, node* &realRoot){
+    node *temp = root->right;
+    root->right = temp->left;
+    if (root->right != NULL){
+        root->right->parent = root;
+    }
+    temp->parent = root->parent;
+    if (root->parent == NULL){
+        root = temp;
+    }else if (root == root->parent->left){
+        root->parent->left = temp;
+    }else{
+        root->parent->right = temp;
+    }
+    temp->left = root;
+    root->parent = temp;
 }
 
 void reColor(node* &head, node* &parent, node* &grandParent, node* &uncle){
@@ -68,14 +82,20 @@ void setProperties(node* &head, node* &newNode){
 				  cout << "ll" << endl;
 				  right(grandParent, head);
 				  cout << "parent: " << newNode -> parent -> val << endl;
-				  cout << "grandparent: " << grandParent -> val << endl;	
+				  cout << "grandparent: " << grandParent -> val << endl;
+				  int tempColor = newNode -> parent -> color;
+				  newNode -> parent -> color = grandParent -> color;
+				  grandParent -> color = tempColor;
 			  	}
 				//left right case
 				else if(newNode == newNode -> parent -> right){
 				   //rotate left, rotate right, recolor
 				   cout << "lr" << endl;
-				   //left(grandParent, head);
-			           //right(grandParent, head);
+				   left(grandParent, head);
+			           right(grandParent, head);
+				  int tempColor = newNode -> parent -> color;
+				  newNode -> parent -> color = grandParent -> color;
+				  grandParent -> color = tempColor;
 				}
 			}
 		}else if(newNode -> parent == grandParent->right){
@@ -89,12 +109,19 @@ void setProperties(node* &head, node* &newNode){
 				//rotations
 				//right right case
 				if(newNode == newNode -> parent -> right){
-				   //rotate left
+				   left(grandParent, head);
+				  int tempColor = newNode -> parent -> color;
+				  newNode -> parent -> color = grandParent -> color;
+				  grandParent -> color = tempColor;
 				   //recolor
 				   cout << "rr" << endl;	
 				//right left case
 				}else if(newNode == newNode -> parent -> left){
-				   //rotate right, rotate left, recolor
+				   right(grandParent, head);
+				   left(grandParent, head);
+				  int tempColor = newNode -> parent -> color;
+				  newNode -> parent -> color = grandParent -> color;
+				  grandParent -> color = tempColor;
 				   cout << "rl" << endl;
 				}
 			}		
