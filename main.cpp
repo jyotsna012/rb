@@ -4,7 +4,57 @@
 
 using namespace std;
 
-node* insert(node* head, int data, node* newRoot, node* prev){
+node* setProperties(node* &head);
+
+void reColor(node* &head, node* &parent, node* &grandParent, node* &uncle){
+	parent -> color = black;
+	uncle -> color = black;
+	if(grandParent -> parent != NULL){
+		grandParent -> color = red;
+		setProperties(head, grandParent)
+	}
+}
+
+node* setProperties(node* &head, node* newNode){
+	node* grandParent = newNode -> parent->parent;
+	if(newNode -> parent -> color != 0){
+		if(newNode -> parent == grandParent->left){
+			node* uncle = grandParent->right;
+			if(uncle -> color == 1){
+				reColor(newNode, newNode -> parent, grandParent, uncle);
+			}else if(uncle -> color == 0 || uncle == NULL){
+			  	//left left case
+			  	if(newNode == newNode -> parent -> left){
+				  //rotate right
+				  //recolor
+			  	}
+				//left right case
+				else if(newNode == newNode -> parent -> right){
+				   //rotate right, rotate right, recolor	
+				
+				}
+			}
+		}else if(newNode -> parent == grandParent->right){
+			node* uncle = grandParent->left;
+			if(uncle -> color == 1){
+				reColor(newNode, newNode -> parent, grandParent, uncle);
+			}else if(uncle -> color == 0 || uncle == NULL){
+				//rotations
+				//right right case
+				if(newNode == newNode -> parent -> right){
+				   //rotate left
+				   //recolor
+				//right left case
+				}else if(newNode == newNode -> parent -> left){
+				   //rotate left, rotate left, recolor
+				}
+			}		
+		
+		}
+	}
+}
+
+node* insert(node* &head, int data, node* &newRoot, node* &prev){
  if(head == NULL){
   head = new node();
   head -> val = data;
@@ -35,7 +85,7 @@ node* insert(node* head, int data, node* newRoot, node* prev){
 }
 
 //used the same algorithim from Geeks for Geeks https://www.geeksforgeeks.org/print-binary-tree-2-dimensions/
-void print(node *root, int space)
+void print(node* &root, int space)
 {
     if (root == NULL){
         return;
