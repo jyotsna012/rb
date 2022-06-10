@@ -48,51 +48,51 @@ void fixDoubleBlack(node* &root, node* &deleted) {
   if (deleted == root)
     return;
 
-  node* sibling = sibling(deleted);
+  node* ssibling = sibling(deleted);
   node* parent = deleted->parent;
 
-  if (sibling == NULL) {
+  if (ssibling == NULL) {
     fixDoubleBlack(root, parent);
   } else {
-    if (sibling->color == 1) {
+    if (ssibling->color == 1) {
       parent->color = 1; 
-      sibling->color = 0; 
-      if (sibling == parent->left) {
+      ssibling->color = 0; 
+      if (ssibling == parent->left) {
 	right(root, parent);
       } else {
 	left(root, parent);
       }
       fixDoubleBlack(root, deleted);
     } else {
-      if (hasRedChild(sibling)) {
-	if (sibling->left != NULL && sibling->left->color == 1) {
-	  if (sibling == parent->left) {
+      if (hasRedChild(ssibling)) {
+	if (ssibling->left != NULL && ssibling->left->color == 1) {
+	  if (ssibling == parent->left) {
 	    //left left
-	    sibling->left->color = sibling->color;
-	    sibling->color = parent->color;
+	    ssibling->left->color = ssibling->color;
+	    ssibling->color = parent->color;
 	    right(root, parent);
 	  } else {
 	    //right left
-	    sibling->left->color = parent->color;
-	    right(root, sibling);
+	    ssibling->left->color = parent->color;
+	    right(root, ssibling);
 	    left(root, parent);
 	  }
 	} else {
-	  if (sibling == parent->left) {
+	  if (ssibling == parent->left) {
 	    //left right
-	    sibling->right->color = parent->color;
-	    left(root, sibling);
+	    ssibling->right->color = parent->color;
+	    left(root, ssibling);
 	    right(root, parent);
 	  } else {
 	    //right right
-	    sibling->right->color = sibling->color;
-	    sibling->color = parent->color;
+	    ssibling->right->color = ssibling->color;
+	    ssibling->color = parent->color;
 	    left(root, parent);
 	  }
 	}
 	parent->color = 0; 
       } else {
-	sibling->color = 1; 
+	ssibling->color = 1; 
 	if (parent->color == 0) {
 	  fixDoubleBlack(root, parent); 
 	} else {
