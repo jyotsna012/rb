@@ -10,12 +10,14 @@ node* insert(node* head, int data, node* newRoot, node* prev){
   head -> val = data;
   head -> color = 0;
   newRoot = head;
+  cout << "I am a head node" << endl;	 
  }
  else{
   if(newRoot == NULL){
      newRoot = new node();
      newRoot -> val = data;
      newRoot -> parent = prev;
+     cout << "added" << endl;	  
      return newRoot;
   }
   else if(data <= newRoot->val){
@@ -99,7 +101,6 @@ int main(){
       if(choice == 5){
           tf =false;
       }else if(choice == 4){
-	cout << "4" << endl;      
         print(root, -5);
       }else if(choice == 1){
           numelements++;
