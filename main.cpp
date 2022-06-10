@@ -110,9 +110,9 @@ void setProperties(node* &head, node* &newNode){
 				//right right case
 				if(newNode == newNode -> parent -> right){
 				   left(grandParent, head);
-				  //int tempColor = newNode -> parent -> color;
-				  //newNode -> parent -> color = grandParent -> color;
-				  //grandParent -> color = tempColor;
+				  int tempColor = newNode -> parent -> color;
+				  newNode -> parent -> color = grandParent -> color;
+				  grandParent -> color = tempColor;
 				   //recolor
 				   cout << "rr" << endl;	
 				//right left case
